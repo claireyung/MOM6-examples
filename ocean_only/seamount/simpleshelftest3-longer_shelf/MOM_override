@@ -1,0 +1,67 @@
+#override USE_REGRIDDING = True
+#override REGRIDDING_COORDINATE_MODE = "SIGMA_SHELF_ZSTAR" 
+#override REMAPPING_SCHEME = "PPM_IH4"
+!#override MIN_THICKNESS = 1e-4
+#override NIGLOBAL = 240                  !
+#override NJGLOBAL = 40                   !
+#override GRID_CONFIG = "cartesian"       !
+#override AXIS_UNITS = "k"                ! default = "degrees"
+#override SOUTHLAT = 0.0                  !   [k]
+#override LENLAT = 80.0                   !   [k]
+#override WESTLON = 320.0                 !   [k] default = 0.0
+#override LENLON = 480.0                  !   [k]
+#override TOPO_CONFIG = "file"
+#override TOPO_FILE = "topog_extend.nc"
+!#override TOPO_FILE = "topog_vanish.nc"
+#override MAXIMUM_DEPTH = 720.0           !   [m]
+#override DT = 300.0
+#override DTTHERM = 300.0
+#override ICE_PROFILE_CONFIG = "FILE"     !
+#override ICE_THICKNESS_FILE = "ice_shelf.nc" ! default = "ice_shelf_h.nc"
+#override ICE_THICKNESS_VARNAME = "thick" ! default = "h_shelf"
+#override ICE_AREA_VARNAME = "area"       ! default = "area_shelf_h"
+
+#override TS_CONFIG = "ISOMIP"
+#override ICE_SHELF = True
+
+#override DYNAMIC_SURFACE_PRESSURE = True
+#override DT_FORCING = 300.0
+#override DTBT = -0.9
+#override IC_OUTPUT_FILE = "MOM_IC.nc"
+#override VERBOSITY = 9
+#override NIHALO=4
+#override NJHALO=4
+#override NK=25
+#override TS_FILE = "ts.nc"
+
+!#override DRAG_BG_VEL = 0.15 ! Default is 0.00
+!!#override KV_ML_INVZ2 = 1e-3
+!#override KH = 6.0 ! ISOMIP Asay-Davis protocol, original is 0
+!#override MASS_WEIGHT_IN_PRESSURE_GRADIENT = True
+!#override BT_THICK_SCHEME = "FROM_BT_CONT"
+!#override MIN_THICKNESS =  1e-4
+
+!! Run first !!
+
+!#override THICKNESS_CONFIG = "ISOMIP"
+!#override DAYMAX = 0.05
+!#override ICE_SHELF_INITIALIZATION_Z_TOLERANCE = 1.0e-20
+!#override TRIM_IC_FOR_P_SURF = True
+!#override SURFACE_PRESSURE_FILE = "ice_shelf.nc" !
+                                ! The initial condition file for the surface pressure exerted by ice.
+!SURFACE_PRESSURE_VAR = "thick"  !   [Pa] default = ""
+                                ! The initial condition variable for the surface pressure exerted by ice.
+!SURFACE_PRESSURE_SCALE = 8820.0 !   [file dependent] default = 1.0
+                                ! A scaling factor to convert SURFACE_PRESSURE_VAR from file
+                                ! SURFACE_PRESSURE_FILE into a surface pressure.
+
+!! After running above, run make_thickness.ipynb and then uncomment below and comment above and run again !!
+
+!#override DAYMAX = 1 !30
+#override THICKNESS_CONFIG = "thickness_file"
+#override THICKNESS_FILE = "thickness_simpleshelf3_pfile_extend.nc"  ! This is defined in make_thickness.ipynb
+#override REMAP_AFTER_INITIALIZATION = False
+#override HACK_MODE = True 
+
+#override DEBUG_IS = True
+!#override VERBOSITY = 9

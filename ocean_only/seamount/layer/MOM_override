@@ -1,2 +1,7 @@
 ! Blank file in which we can put "overrides" for parameters
 MIN_THICKNESS = 0.1
+
+#override KHTH = 0
+#override MIN_THICKNESS = 1E-12
+!#override MASS_WEIGHT_IN_PRESSURE_GRADIENT = True
+#override ANALYTIC_FV_PGF = False

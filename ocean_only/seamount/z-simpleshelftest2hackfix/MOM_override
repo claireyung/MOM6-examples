@@ -1,0 +1,54 @@
+#override USE_REGRIDDING = True
+#override REGRIDDING_COORDINATE_MODE = "ZSTAR" 
+#override REMAPPING_SCHEME = "PPM_IH4"
+#override MIN_THICKNESS = 0.1
+#override NIGLOBAL = 240                  !
+#override NJGLOBAL = 40                   !
+#override GRID_CONFIG = "cartesian"       !
+#override AXIS_UNITS = "k"                ! default = "degrees"
+#override SOUTHLAT = 0.0                  !   [k]
+#override LENLAT = 80.0                   !   [k]
+#override WESTLON = 320.0                 !   [k] default = 0.0
+#override LENLON = 480.0                  !   [k]
+#override TOPO_CONFIG = "flat"
+#override MAXIMUM_DEPTH = 720.0           !   [m]
+#override DT = 300.0
+#override DTTHERM = 300.0
+#override ICE_PROFILE_CONFIG = "FILE"     !
+#override ICE_THICKNESS_FILE = "ice_shelf.nc" ! default = "ice_shelf_h.nc"
+#override ICE_THICKNESS_VARNAME = "thick" ! default = "h_shelf"
+#override ICE_AREA_VARNAME = "area"       ! default = "area_shelf_h"
+!#override THICKNESS_CONFIG = "ISOMIP"     ! default = "uniform"
+#override TS_CONFIG = "ISOMIP"
+#override ICE_SHELF = True
+!#override TRIM_IC_FOR_P_SURF =  False      !   [Boolean] default = False
+#override DYNAMIC_SURFACE_PRESSURE = True
+#override DT_FORCING = 300.0
+#override DTBT = -0.9
+#override IC_OUTPUT_FILE = "MOM_IC.nc"
+#override VERBOSITY = 9
+#override NIHALO=4
+#override NJHALO=4
+#override NK=25
+#override TS_FILE = "ts.nc"
+#override DAYMAX = 0.05
+!! STEP ONE !!
+!#override THICKNESS_CONFIG="ISOMIP"
+!#override TRIM_IC_FOR_P_SURF = True
+!#override SURFACE_PRESSURE_FILE = "ice_shelf.nc" !
+                                ! The initial condition file for the surface pressure exerted by ice.
+!SURFACE_PRESSURE_VAR = "thick"  !   [Pa] default = ""
+                                ! The initial condition variable for the surface pressure exerted by ice.
+!SURFACE_PRESSURE_SCALE = 8820.0 !   [file dependent] default = 1.0
+                                ! A scaling factor to convert SURFACE_PRESSURE_VAR from file
+                                ! SURFACE_PRESSURE_FILE into a surface pressure.
+!! STEP TWO !!
+#override THICKNESS_CONFIG = "thickness_file"
+#override THICKNESS_FILE = "thickness_z_simpleshelf2_pdiag.nc"
+#override REMAP_AFTER_INITIALIZATION = False
+#override HACK_MODE = True
+
+!#override KV_ML_INVZ2 = 1.e-3
+!#override HMIX_FIXED = 2
+!#override FIXED_DEPTH_LOTW_ML = True
+!#override LOTW_VISCOUS_ML_FLOOR = True

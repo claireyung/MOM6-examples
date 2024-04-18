@@ -1,0 +1,17 @@
+! Continuous isopycnal mode + initialization
+USE_REGRIDDING = True
+REGRIDDING_COORDINATE_MODE = "Z*" 
+REMAPPING_SCHEME = "PPM_IH4"
+MIN_THICKNESS = 0.1
+
+#override NIGLOBAL = 40                  !
+                                ! The total number of thickness grid points in the x-direction in the physical
+                                ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
+#override NJGLOBAL = 40                   !
+                                ! The total number of thickness grid points in the y-direction in the physical
+                                ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
+!#override DTBT = -0.9
+#override KH = 0.0
+#override KHTH = 0.0
+#override LENLAT = 200.0
+#override REENTRANT_Y = False

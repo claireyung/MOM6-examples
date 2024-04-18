@@ -1,0 +1,9 @@
+! Continuous isopycnal mode + initialization
+USE_REGRIDDING = True
+REGRIDDING_COORDINATE_MODE = "Z*" 
+REMAPPING_SCHEME = "PPM_IH4"
+MIN_THICKNESS = 0.1
+
+#override THICKNESS_CONFIG = "ISOMIP"
+#override TS_CONFIG = "ISOMIP"
+

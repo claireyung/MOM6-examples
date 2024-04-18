@@ -1,0 +1,122 @@
+! turn on to use ALE
+#override USE_REGRIDDING = True
+#override REGRIDDING_COORDINATE_MODE = "ZSTAR"!"SIGMA"! "ZSTAR"!"SIGMA"!ZSTAR" 
+#override REMAPPING_SCHEME = "PPM_IH4"
+! turn on to use layer
+#override T_REF = -1.9                    !   [degC]
+#override FIT_SALINITY = True             ! If true, accept the prescribed temperature and fit the
+#override COORD_CONFIG = "linear"         !
+#override LIGHTEST_DENSITY = 1033.8    !   [kg m-3] default = 1027.0
+#override DENSITY_RANGE = 0.75       !   [kg m-3] default = 2.0
+! modify minthick
+#override MIN_THICKNESS = 1E-12
+! Domain info
+#override NIGLOBAL = 240                  !
+!#override NJGLOBAL = 40                   !
+#override GRID_CONFIG = "cartesian"       !
+#override AXIS_UNITS = "k"                ! default = "degrees"
+#override SOUTHLAT = 0.0                  !   [k]
+#override LENLAT = 2.0                   !   [k]
+#override WESTLON = 320.0                 !   [k] default = 0.0
+#override LENLON = 480.0                  !   [k]
+!#override TOPO_CONFIG = "flat"
+#override MAXIMUM_DEPTH = 720.0           !   [m]
+!#override DT = 1.0
+!#override DTTHERM = 1.0
+! Ice info
+#override ICE_PROFILE_CONFIG = "FILE"     !
+ICE_THICKNESS_FILE = "TwoDtrianglethick.nc" ! default = "ice_shelf_h.nc"
+#override ICE_THICKNESS_VARNAME = "thick" ! default = "h_shelf"
+#override ICE_AREA_VARNAME = "area"       ! default = "area_shelf_h"
+
+#override TS_CONFIG = "ISOMIP"
+#override ICE_SHELF = True
+
+#override DYNAMIC_SURFACE_PRESSURE = True
+!#override DT_FORCING = 1.0
+#override DTBT = -0.9
+#override IC_OUTPUT_FILE = "MOM_IC.nc"
+!#override VERBOSITY = 9
+!#override NIHALO=4
+!#override NJHALO=4
+#override NK=25
+
+!! Run first !!
+
+#override THICKNESS_CONFIG = "ISOMIP"
+!!#override ICE_SHELF_INITIALIZATION_Z_TOLERANCE = 1.0e-20
+#override TRIM_IC_FOR_P_SURF = True
+#override TRIMMING_USES_REMAPPING = True
+SURFACE_PRESSURE_FILE = "TwoDtrianglethick.nc" !
+                                ! The initial condition file for the surface pressure exerted by ice.
+SURFACE_PRESSURE_VAR = "thick"  !   [Pa] default = ""
+                                ! The initial condition variable for the surface pressure exerted by ice.
+SURFACE_PRESSURE_SCALE = 8820.0 !   [file dependent] default = 1.0
+                                ! A scaling factor to convert SURFACE_PRESSURE_VAR from file
+                                ! SURFACE_PRESSURE_FILE into a surface pressure.
+
+!! After running above, run make_thickness.ipynb and then uncomment below and comment above and run again !!
+
+!#override THICKNESS_CONFIG = "thickness_file"
+! dont forget to edit file name below
+!#override THICKNESS_FILE = "thickness_zstar_surfpressure-minthick1e-12-topo.nc"  ! This is defined in make_thickness.ipynb
+!#override THICKNESS_FILE = "thickness_zstar_surfpressure-minthick1e-12-verticefrontWright.nc"
+!#override HACK_MODE = True 
+
+!#override REMAP_AFTER_INITIALIZATION = False
+
+!#override DEBUG_IS = True
+!#override DEBUG = True
+
+! Add angled topography
+#override TOPO_CONFIG = "flat"
+!#override TOPO_CONFIG = "file"
+!#override TOPO_FILE = "topog_2D.nc"
+
+! Add different ice file
+#override SURFACE_PRESSURE_FILE = "TwoDtrianglethick_verticefront.nc"
+#override ICE_THICKNESS_FILE = "TwoDtrianglethick_verticefront.nc" 
+!#override SURFACE_PRESSURE_FILE = "TwoDtrianglethick_4stepicefront.nc"
+!#override ICE_THICKNESS_FILE = "TwoDtrianglethick_4stepicefront.nc"
+
+!use non-Bouss mode
+!#override BOUSSINESQ = False
+!#override MASS_WEIGHT_IN_PRESSURE_GRADIENT = True
+!#override EQN_OF_STATE = "WRIGHT"
+
+#override CORRECTION_INTXPA = True
+#override TRIM_IC_Z_TOLERANCE = 1e-13
+!#override REMAP_BOUNDARY_EXTRAP = True
+
+!--------------------------------------------------!
+! TRY TURN THERMO ON TO SHOW SPRUIOUS CURRENT THERE !
+!#override SHELF_THERMO = True
+! MIXING
+!#override SMAGORINSKY_KH = False
+!#override BIHARMONIC = False
+!#override KH = 6.0  ! back. horiz. visc.
+!#override KHTR = 1.0    ! back. horiz. diff.
+!#override KD = 5.0E-5     ! back. diapycnal diff.
+!#override KV = 1.0E-3     ! back. diapycnal visc.
+
+!#override SHELF_THREE_EQN = True
+!SHELF_S_ROOT = False! True
+!#override USE_HMIX_SFC_PROP = True
+!#override HMIX_SFC_PROP = 10.
+!
+! SHEAR MIXING
+!#override USE_JACKSON_PARAM = True
+!#override RINO_CRIT = 0.25
+!#override KD_KAPPA_SHEAR_0 = 1.0E-2
+!ENERGETICS_SFC_PBL = True
+!!#override BULKMIXEDLAYER = True
+!!#override BULK_RI_ML = 0.25
+!!#override MIXEDLAYER_RESTRAT = True
+!!#override HMIX_MIN = 10.0
+!!#override KV_TBL_MIN = 1.0E-2
+!!#override HTBL_SHELF_MIN = 10.0
+!!#override BOUND_SALINITY = True
+!
+!COL_THICK_MELT_THRESHOLD = 1.0
+!UTIDE = 0.01
+!#override DIRECT_STRESS = False

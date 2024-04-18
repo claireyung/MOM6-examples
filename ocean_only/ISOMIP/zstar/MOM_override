@@ -1,0 +1,76 @@
+! Blank file in which we can put "overrides" for parameters
+! TIME STEP
+#override DT = 720
+#override DT_THERM = 720
+
+! MIXING
+!#override SMAGORINSKY_KH = False
+!#override BIHARMONIC = False
+!#override KH = 6.0  ! back. horiz. visc.
+!#override KHTR = 1.0    ! back. horiz. diff.
+!#override KD = 5.0E-5     ! back. diapycnal diff.
+!#override KV = 1.0E-3     ! back. diapycnal visc.
+
+!WARM IC
+#override ISOMIP_T_SUR = -1.9
+#override ISOMIP_S_SUR = 33.8
+#override ISOMIP_T_BOT = 1.0
+#override ISOMIP_S_BOT = 34.7
+
+! ice shelf
+!#override SHELF_THERMO = True
+!#override SHELF_THREE_EQN = True
+!#override SHELF_3EQ_GAMMA_T = 0.1423
+!SHELF_S_ROOT = True
+!#override USE_HMIX_SFC_PROP = True
+!#override HMIX_SFC_PROP = 10.
+
+! FRAZIL
+!#override FRAZIL = True
+!#override PRESSURE_DEPENDENT_FRAZIL = True
+
+! MIXED LAYER
+!#override BULKMIXEDLAYER = True
+!#override BULK_RI_ML = 0.25
+!#override MIXEDLAYER_RESTRAT = True
+!#override HMIX_MIN = 10.0
+!#override KV_TBL_MIN = 1.0E-2
+!#override HTBL_SHELF_MIN = 10.0
+!#override BOUND_SALINITY = True
+ 
+! SHEAR MIXING
+!#override USE_JACKSON_PARAM = True
+!#override RINO_CRIT = 0.25
+!#override KD_KAPPA_SHEAR_0 = 1.0E-2
+
+! SPONGE
+!#override SPONGE = True
+ISOMIP_SPONGE_FILE = "3D_LAYER_WARM_IC.nc"
+!#override ISOMIP_TNUDG = 0.1
+!#override SPONGE_DAMPING_FILE = "3D_LAYER_WARM_IC.nc"
+! PASSIVE TRACERS
+USE_ISOMIP_TRACER = True
+
+! Simulation time
+!#override DAYMAX = 730
+
+!#override FIT_SALINITY = False
+
+! Add R22 param info
+!#override SHELF_3EQ_R22_PARAM = True
+!#override SHELF_S_ROOT = False
+!#override SHELF_3EQ_GAMMA_T = 0.012
+!#override SHELF_3EQ_GAMMA_S = 3.9e-4
+!#override SHELF_3EQ_R22_LPLUS_BUOY_ITT_THRESHOLD = 1
+!#override SHELF_3EQ_R22_GAMMA_T_LIM = 0.012
+!#override SHELF_3EQ_R22_GAMMA_S_LIM = 3.9e-4
+!! Change gradient
+!#override SHELF_3EQ_R22_GAMMA_S_A = -9.29
+!#override SHELF_3EQ_R22_GAMMA_S_B = 0.122
+!#override SHELF_3EQ_R22_GAMMA_T_C = -7.58
+!#override SHELF_3EQ_R22_GAMMA_T_D = 0.354
+
+#override USE_REGRIDDING = True
+#override REGRIDDING_COORDINATE_MODE = "ZSTAR" 
+#override REMAPPING_SCHEME = "PPM_IH4"
+

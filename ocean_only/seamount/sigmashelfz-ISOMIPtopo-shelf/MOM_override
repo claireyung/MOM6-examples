@@ -1,0 +1,131 @@
+! Continuous isopycnal mode + initialization
+USE_REGRIDDING = True
+REGRIDDING_COORDINATE_MODE = "SIGMA_SHELF_ZSTAR" 
+REMAPPING_SCHEME = "PPM_IH4"
+MIN_THICKNESS = 0.1
+
+! Change to ISOMIP domain and topography
+#override NIGLOBAL = 240                  !
+                                ! The total number of thickness grid points in the x-direction in the physical
+                                ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
+#override NJGLOBAL = 40                   !
+                                ! The total number of thickness grid points in the y-direction in the physical
+                                ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
+!#override DTBT = -0.9
+!#override KH = 0.0
+!#override KHTH = 0.0
+!#override LENLAT = 200.0
+!#override REENTRANT_Y = False
+
+!#override TOPO_CONFIG = "isomip"
+!NIGLOBAL = 240                  !
+                                ! The total number of thickness grid points in the x-direction in the physical
+                                ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
+!NJGLOBAL = 40                   !
+                                ! The total number of thickness grid points in the y-direction in the physical
+                                ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
+
+#override GRID_CONFIG = "cartesian"       !
+                                ! A character string that determines the method for defining the horizontal
+                                ! grid.  Current options are:
+                                !     mosaic - read the grid from a mosaic (supergrid)
+                                !              file set by GRID_FILE.
+                                !     cartesian - use a (flat) Cartesian grid.
+                                !     spherical - use a simple spherical grid.
+                                !     mercator - use a Mercator spherical grid.
+#override AXIS_UNITS = "k"                ! default = "degrees"
+                                ! The units for the Cartesian axes. Valid entries are:
+                                !     degrees - degrees of latitude and longitude
+                                !     m - meters
+                                !     k - kilometers
+#override SOUTHLAT = 0.0                  !   [k]
+                                ! The southern latitude of the domain or the equivalent starting value for the
+                                ! y-axis.
+#override LENLAT = 80.0                   !   [k]
+                                ! The latitudinal or y-direction length of the domain.
+#override WESTLON = 320.0                 !   [k] default = 0.0
+                                ! The western longitude of the domain or the equivalent starting value for the
+                                ! x-axis.
+#override LENLON = 480.0                  !   [k]
+                                ! The longitudinal or x-direction length of the domain.
+#override TOPO_CONFIG = "ISOMIP"          !
+                                ! This specifies how bathymetry is specified:
+                                !     file - read bathymetric information from the file
+                                !       specified by (TOPO_FILE).
+                                !     flat - flat bottom set to MAXIMUM_DEPTH.
+                                !     bowl - an analytically specified bowl-shaped basin
+                                !       ranging between MAXIMUM_DEPTH and MINIMUM_DEPTH.
+                                !     spoon - a similar shape to 'bowl', but with an vertical
+                                !       wall at the southern face.                                                                                                                                     52,19         10%
+! === module ISOMIP_initialize_topography ===
+#override MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
+                                ! The minimum depth of the ocean.
+#override MAXIMUM_DEPTH = 720.0           !   [m]
+                                ! The maximum depth of the ocean.
+
+! Make timestep the same
+#override DAYMAX = 1
+#override DT = 300.0
+#override DTTHERM = 300.0
+
+! Add ice shelf
+ICE_PROFILE_CONFIG = "FILE"     !
+                                ! This specifies how the initial ice profile is specified. Valid values are:
+                                ! CHANNEL, FILE, and USER.
+ICE_THICKNESS_FILE = "Ocean1_3D.nc" ! default = "ice_shelf_h.nc"
+                                ! The file from which the ice bathymetry and area are read.
+ICE_THICKNESS_VARNAME = "thick" ! default = "h_shelf"
+                                ! The name of the thickness variable in ICE_THICKNESS_FILE.
+ICE_AREA_VARNAME = "area"       ! default = "area_shelf_h"
+                                ! The name of the area variable in ICE_THICKNESS_FILE.
+! Make TS and thickness ISOMIP
+#override THICKNESS_CONFIG = "ISOMIP"     ! default = "uniform"
+#override TS_CONFIG = "ISOMIP"
+ICE_SHELF = True
+
+! Trying otehr things that might be needed for ice shlef
+TRIM_IC_FOR_P_SURF = True       !   [Boolean] default = False
+                                ! If true, cuts way the top of the column for initial conditions at the depth
+                                ! where the hydrostatic pressure matches the imposed surface pressure which is
+                                ! read from file.
+SURFACE_PRESSURE_FILE = "Ocean1_3D.nc" !
+                                ! The initial condition file for the surface pressure exerted by ice.
+SURFACE_PRESSURE_VAR = "thick"  !   [Pa] default = ""
+                                ! The initial condition variable for the surface pressure exerted by ice.
+SURFACE_PRESSURE_SCALE = 8820.0 !   [file dependent] default = 1.0
+                                ! A scaling factor to convert SURFACE_PRESSURE_VAR from file
+                                ! SURFACE_PRESSURE_FILE into a surface pressure.
+DYNAMIC_SURFACE_PRESSURE = True
+
+#override DT_FORCING = 300.0
+#override MIN_THICKNESS = 0.001 !  1.0E-12
+#override BBL_THICK_MIN = 2.0
+!#override MASS_WEIGHT_IN_PRESSURE_GRADIENT = True
+#override BT_THICK_SCHEME = "FROM_BT_CONT"
+!!#override DTBT = -0.9
+#override ANGSTROM = 1.0E-15           !   [m] default = 1.0E-10
+
+! Test
+#override F_0 = -1.408706225059977E-04
+#override REMAPPING_SCHEME = "PLM" 
+#override COORD_CONFIG = "linear"
+#override LIGHTEST_DENSITY = 1027.1524 
+#override DENSITY_RANGE = 0.7438856 
+#override LINEAR_DRAG = False
+#override CDRAG = 0.003
+!#override DRAG_BG_VEL = 0.0 
+#override KV_TBL_MIN = 0.01 
+#override KHTH = 0.0
+#override KH = 10000 !  6.0 ! 0.0  
+#override BIHARMONIC = True
+#override AH_VEL_SCALE = 0.001
+#override SMAGORINSKY_AH = True
+#override SMAG_BI_CONST = 0.06 
+#override DIRECT_STRESS = False
+#override FIXED_DEPTH_LOTW_ML = True
+#override LOTW_VISCOUS_ML_FLOOR = True
+#override HARMONIC_BL_SCALE = 1.0
+#override KV_ML_INVZ2 = 1.0E-04    
+#override DTBT = -0.9
+#override GUST_CONST = 0.02
+

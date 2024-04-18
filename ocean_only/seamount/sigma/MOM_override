@@ -1,5 +1,12 @@
 ! Terrain-following coordinates
-USE_REGRIDDING = True
-REGRIDDING_COORDINATE_MODE = "SIGMA" 
-REMAPPING_SCHEME = "PPM_IH4"
+
+#override USE_REGRIDDING = True
+#override REGRIDDING_COORDINATE_MODE = "SIGMA" 
+#override REMAPPING_SCHEME = "PPM_IH4"
 MIN_THICKNESS = 0.1
+
+!#override DAYMAX = 30.0 ! Change time duration
+#override KHTH = 0.0
+!#override MIN_THICKNESS = 1e-12
+!#override MASS_WEIGHT_IN_PRESSURE_GRADIENT = True
+#override ANALYTIC_FV_PGF = False
