@@ -3,12 +3,12 @@
 !#override TRIM_IC_FOR_P_SURF = False
 #override TRIMMING_USES_REMAPPING = True
 #override USE_REGRIDDING = True
-#override REGRIDDING_COORDINATE_MODE = SIGMA ! ZSTAR !SIGMA_SHELF_ZSTAR
+#override REGRIDDING_COORDINATE_MODE = ZSTAR !SIGMA !SIGMA_SHELF_ZSTAR !SIGMA !SIGMA_SHELF_ZSTAR
 #override REMAPPING_SCHEME = "PPM_IH4" !!
 #override TS_CONFIG = "ISOMIP"
 #override THICKNESS_CONFIG = "ISOMIP" !!
 ICE_SHELF_INITIALIZATION_Z_TOLERANCE = 1.0E-12
-TRIM_IC_Z_TOLERANCE = 1e-14 !!
+TRIM_IC_Z_TOLERANCE = 1.e-14 !!
 DRAG_BG_VEL_SHELF = 0.05 !!
 !#override DENSITY_ICE = 917
 !#override ANGSTROM = 1.0E-10
@@ -18,13 +18,20 @@ DRAG_BG_VEL_SHELF = 0.05 !!
 !#override THICKNESS_FILE = "sigmazstar.nc"
 !#override HACK_MODE = True
 
-#override CORRECTION_INTXPA = True
-!#override MASS_WEIGHT_IN_PRESSURE_GRADIENT = True
-!REMAP_AFTER_INITIALIZATION = True
-#override MASS_WEIGHT_IN_PRESSURE_GRADIENT = False
-#override REMAP_BOUNDARY_EXTRAP = True
-#override DYNAMIC_SURFACE_PRESSURE = True
-#override TOPO_EDITS_FILE = "Topo_edits_10m_less_drastic.nc"
-#override TOPO_CONFIG = "file"
-#override TOPO_FILE = "ISOMIP-topo-file.nc"
+!#override CORRECTION_INTXPA = True
+!#override RESET_INTXPA_INTEGRAL = True !reqs CORRECTION_INTXPA = True
 
+!#override CORRECTION_INTXPA_5PT = True
+#override MASS_WEIGHT_IN_PRESSURE_GRADIENT = True
+!REMAP_AFTER_INITIALIZATION = True
+!#override MASS_WEIGHT_IN_PRESSURE_GRADIENT = False
+!#override REMAP_BOUNDARY_EXTRAP = True
+!#override DYNAMIC_SURFACE_PRESSURE = True
+!#override TOPO_EDITS_FILE = "Topo_edits_50m.nc"!_10m_less_drastic.nc"
+!#override TOPO_CONFIG = "file"
+!#override TOPO_FILE = "ISOMIP-topo-file.nc"
+!#override EQN_OF_STATE = "Wright"
+
+!#override THICKNESS_CONFIG = "thickness_file"
+!#override THICKNESS_FILE = "thickness_sigma.nc"
+!#override HACK_MODE = True

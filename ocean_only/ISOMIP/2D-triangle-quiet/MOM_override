@@ -1,6 +1,6 @@
 ! turn on to use ALE
 #override USE_REGRIDDING = True
-#override REGRIDDING_COORDINATE_MODE = "ZSTAR"!"SIGMA"! "ZSTAR"!"SIGMA"!ZSTAR" 
+#override REGRIDDING_COORDINATE_MODE = "SIGMA"!"ZSTAR"!"SIGMA"! "ZSTAR"!"SIGMA"!ZSTAR" 
 #override REMAPPING_SCHEME = "PPM_IH4"
 ! turn on to use layer
 #override T_REF = -1.9                    !   [degC]
@@ -86,7 +86,7 @@ SURFACE_PRESSURE_SCALE = 8820.0 !   [file dependent] default = 1.0
 
 #override CORRECTION_INTXPA = True
 #override TRIM_IC_Z_TOLERANCE = 1e-13
-!#override REMAP_BOUNDARY_EXTRAP = True
+#override REMAP_BOUNDARY_EXTRAP = True
 
 !--------------------------------------------------!
 ! TRY TURN THERMO ON TO SHOW SPRUIOUS CURRENT THERE !

@@ -1,2 +1,10 @@
 ! Blank file in which we can put "overrides" for parameters
 !DEBUG=True
+#override USE_REGRIDDING = True
+#override REGRIDDING_COORDINATE_MODE = "ZSTAR"! "ZSTAR"! "ZSTAR"!"RHO"!SIGMA"!ZSTAR"! "ZSTAR" 
+#override REMAPPING_SCHEME = "PPM_IH4"
+!#override CORRECTION_INTXPA_5PT = True
+!#override USE_EOS = True
+!EQN_OF_STATE = "LINEAR"
+#override ENABLE_THERMODYNAMICS = True
+#override TS_CONFIG = "seamount"
