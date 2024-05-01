@@ -1,7 +1,7 @@
 
 #override USE_REGRIDDING = True
-#override REGRIDDING_COORDINATE_MODE = "ZSTAR"! "SIGMA"!ZSTAR"! "ZSTAR"! "ZSTAR"!"RHO"!SIGMA"!ZSTAR"! "ZSTAR" 
-#override REMAPPING_SCHEME = "PQM_IH6IH5"! "PPM_IH4"
+#override REGRIDDING_COORDINATE_MODE = "ZSTAR"! "SIGMA"! "ZSTAR"! "SIGMA"!ZSTAR"! "ZSTAR"! "ZSTAR"!"RHO"!SIGMA"!ZSTAR"! "ZSTAR" 
+#override REMAPPING_SCHEME = "PPM_IH4"
 ! turn on to use layer
 #override T_REF = -1.9                    !   [degC]
 #override FIT_SALINITY = True             ! If true, accept the prescribed temperature and fit the
@@ -82,7 +82,9 @@ DRAG_BG_VEL_SHELF = 0.05
 !#override DYNAMIC_SURFACE_PRESSURE = True
 
 !#override EQN_OF_STATE = "WRIGHT"
-!#override MASS_WEIGHT_IN_PRESSURE_GRADIENT = True
+#override MASS_WEIGHT_IN_PRESSURE_GRADIENT = False
+#override MASS_WEIGHT_IN_PRESSURE_GRADIENT_IS = True
+
 !#override REMAPPING_ANSWER_DATE = 20181231
 ! might help w init?
 #override REMAP_BOUNDARY_EXTRAP = False
@@ -125,23 +127,24 @@ TRIM_IC_Z_TOLERANCE = 1.e-14
 !#override KV_ML_INVZ2=1e-2
 !#override CORRECTION_INTXPA = True
 !#override CORRECTION_INTXPA_5PT = True
-!#override RESET_INTXPA_INTEGRAL = True !reqs CORRECTION_INTXPA = True
+#override RESET_INTXPA_INTEGRAL = True !reqs CORRECTION_INTXPA = True
+!#override RESET_INTXPA_INTEGRAL_2 = True
 !#override CORRECT_PF_IF_BOUNDED_NO_SHEAR = True
 !#override REGRID_TIME_SCALE = 90000
 !#override DAYMAX = 0.00016 !17361111
 
 ! MAKE Y-DXN SEAMOUNT
-!#override NIGLOBAL = 4
-!#override NJGLOBAL = 40
-!#override LENLON = 20
-!#override WESTLON = 30
-!#override LENLAT = 200
-!#override SOUTHLAT = 0
+#override NIGLOBAL = 4
+#override NJGLOBAL = 40
+#override LENLON = 20
+#override WESTLON = 30
+#override LENLAT = 200
+#override SOUTHLAT = 0
 !#override TOPO_CONFIG = "file"
 !#override TOPO_FILE = "toposeamounty.nc"
 !SEAMOUNT_Y_LENGTH_SCALE = 20
-!#override ICE_THICKNESS_FILE = "fatseamounticey.nc"
-!#override SURFACE_PRESSURE_FILE = "fatseamounticey.nc" !
+#override ICE_THICKNESS_FILE = "fatseamounticey.nc"
+#override SURFACE_PRESSURE_FILE = "fatseamounticey.nc" !
 !#override ICE_THICKNESS_FILE = "fatseamountice3D.nc"
 !#override SURFACE_PRESSURE_FILE = "fatseamountice3D.nc" !
 
